@@ -1,0 +1,14 @@
+{
+  "name": "ajxtt",
+  "description": "爱江西婷婷",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["tabs"],
+  "optional_permissions": [],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

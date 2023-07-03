@@ -8,13 +8,18 @@ export default defineConfig({
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
+  publicDir: "public",
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "./index.html"),
+        popup: resolve(__dirname, "./popup.html"),
+        background: resolve(__dirname, "./src/background"),
+      },
+      output: {
+        dir: "pkg",
+        entryFileNames: "[name].js",
       },
     },
-    outDir: "dist",
   },
   esbuild: {},
 });
