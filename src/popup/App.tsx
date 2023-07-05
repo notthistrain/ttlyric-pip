@@ -5,5 +5,5 @@ export default function () {
       <span s-red>江西</span>
       <span hover:text-blue>婷婷</span>
     </div>
-  );
+  )
 }
