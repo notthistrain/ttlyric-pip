@@ -6,9 +6,10 @@
   "background": {
     "service_worker": "js/background.js"
   },
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "windows", "scripting", "storage"],
   "optional_permissions": [],
   "action": {
     "default_popup": "popup.html"
-  }
+  },
+  "host_permissions": ["<all_urls>"]
 }
