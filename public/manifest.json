@@ -4,8 +4,18 @@
   "version": "1.0.0",
   "manifest_version": 3,
   "background": {
-    "service_worker": "js/background.js"
+    "service_worker": "js/background.js",
+    "type": "module"
   },
+  "content_scripts": [
+    {
+      "js": ["js/checkhost.js"],
+      "matches": ["<all_urls>"],
+      "all_frames": false,
+      "run_at": "document_start",
+      "match_about_blank": false
+    }
+  ],
   "permissions": ["tabs", "windows", "scripting", "storage"],
   "optional_permissions": [],
   "action": {

@@ -19,13 +19,13 @@ export enum SCRIPT {
 /**
  * @description 某些知名音乐网站
  */
-export enum MUSIC_HOST_NAME {
+export enum MUSIC_URLS {
   /**
    * @description 咪咕音乐 music.migu.com
    */
-  MIGU = "migu",
+  MIGU = "music.migu.cn/v3/music/player/audio",
   /**
    * @description 网易云音乐 music.163.com
    */
-  NETEASE = "163",
+  NETEASE = "music.163.com/",
 }

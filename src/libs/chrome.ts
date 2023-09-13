@@ -4,7 +4,10 @@ import { MessageDTO, RuntimeMessageHandler, SCRIPT } from "../types"
  * @description
  * @returns [添加消息处理器, 删除消息处理器]
  */
-export function useCRXRuntimeMessage(module: SCRIPT) {
+export function useRuntimeMessageHandlerCreator<T = any>(
+  module: SCRIPT,
+  context: T
+) {
   const handlers = new Map<string, RuntimeMessageHandler>()
   chrome.runtime.onMessage.addListener(
     (message: MessageDTO<any>, sender, sendResponse) => {
@@ -12,7 +15,8 @@ export function useCRXRuntimeMessage(module: SCRIPT) {
       if (dest === module) {
         const handler = handlers.get(action)
         if (handler) {
-          handler(message, sender, sendResponse)
+          console.log(message)
+          handler(message, sender, sendResponse, context)
         } else {
           console.error(`没有${action}对应的消息处理`, message)
         }
@@ -22,18 +26,17 @@ export function useCRXRuntimeMessage(module: SCRIPT) {
       return true
     }
   )
-  return () => {
-    const addHandler = (key: string, fn: RuntimeMessageHandler) => {
+  return [
+    (key: string, fn: RuntimeMessageHandler<any, T>) => {
       if (handlers.has(key)) {
         throw new Error(`runtime-${key} 消息处理key重复了`)
       }
       handlers.set(key, fn)
       console.log(`添加${key}消息处理`)
-    }
-    const removeHandler = (key: string) => {
+    },
+    (key: string) => {
       handlers.delete(key)
       console.log(`消息处理${key}已移除`)
-    }
-    return [addHandler, removeHandler]
-  }
+    },
+  ]
 }

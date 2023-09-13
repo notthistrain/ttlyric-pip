@@ -1,17 +1,10 @@
-import { SCRIPT } from "./const"
+import { MessageDTO } from "./common"
 
-export interface MessageDTO<T> {
-  action: string
-  data: T
-  from: SCRIPT,
-  dest: SCRIPT
-}
-
-export interface RuntimeMessageHandler<T = any> {
+export interface RuntimeMessageHandler<T = any, C = any> {
   (
     message: MessageDTO<T>,
     sender: chrome.runtime.MessageSender,
-    sendResponse: (response?: any) => void
+    sendResponse: (response?: any) => void,
+    context: C
   ): void
 }
-

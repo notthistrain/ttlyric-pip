@@ -21,7 +21,7 @@ export default defineConfig({
       input: {
         popup: resolve(__dirname, "./popup.html"),
         background: resolve(__dirname, "./src/main/background"),
-        netease: resolve(__dirname, "./src/main/insert/netease"),
+        checkhost: resolve(__dirname, "./src/main/insert/checkhost"),
       },
       output: {
         dir: "pkg",
